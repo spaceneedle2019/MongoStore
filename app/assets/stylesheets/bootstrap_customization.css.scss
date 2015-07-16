@@ -1,0 +1,179 @@
+// common styles //
+body {
+  padding-top: 0px;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font-url('glyphicons-halflings-regular.eot');
+  src: font-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+       font-url('glyphicons-halflings-regular.woff') format('woff'),
+       font-url('glyphicons-halflings-regular.ttf') format('truetype'),
+       font-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+h3 {
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+h4 {
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+h5 {
+  padding: 0px;
+}
+
+.btn {
+  font-size: 13px;
+}
+
+.table {
+  thead {
+    th {
+      font-family: inherit;
+      font-weight: 500;
+      line-height: 1.1;
+      color: inherit;
+    }
+  }
+  tbody {
+    td {
+      font-family: inherit;
+      font-weight: 300;
+      font-size: 14px;
+      color: inherit;
+    }
+  }
+}
+
+.panel {
+  .panel-heading {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+  }
+}
+
+b {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+footer {
+  font-family: inherit;
+  color: inherit;
+}
+
+// form styles //
+.radio {
+  float: left;
+}
+
+.radio-label {
+  margin-top: 3px;
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+.controls {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: normal;
+}
+
+.offset {
+   margin: 5px;
+}
+
+.form-control {
+  &.mini {
+    height: 20px;
+    padding: 0px 2px 0px 2px;
+    margin: 0px;
+  }
+  &.date-input {
+    float: left;
+    margin-right: 5px;
+  }
+}
+
+// navigation styles //
+
+.subnav {
+  .nav-tabs {
+     a {
+       padding-left: 10px;
+       padding-right: 10px;
+     }
+  }
+}
+
+.navbar {
+  height: 40px;
+  padding-right: 0px;
+  padding-left: 0px;
+  background-color: #CE2615;
+  -webkit-font-smoothing: subpixel-antialiased; /* font-fix for Safari */
+
+ .navbar-brand {
+   color: #ffffff;
+ }
+
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #9B2217;
+  }
+
+ .navbar-nav {
+   li {
+     a {
+       color: #ffffff;
+     }
+     a:hover {
+       background-color: #9B2217;
+     }
+     a:active {
+       background-color: #9B2217;
+     }
+     &.active {
+       background-color: #9B2217;
+     }
+     a:visited {
+       background-color: #9B2217;
+     }
+   }
+   .dropdown {
+     .dropdown-toggle .active {
+//       background-color: #CE2615;
+//       background-image: -moz-linear-gradient(top, #CE2615, #9B2217);
+//       background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#CE2615), to(#9B2217));
+//       background-image: -webkit-linear-gradient(top, #CE2615, #9B2217);
+//       background-image: -o-linear-gradient(top, #CE2615, #9B2217);
+//       background-image: linear-gradient(to bottom, #CE2615, #9B2217);
+//       background-repeat: repeat-x;
+//       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CE2615', endColorstr='#9B2217', GradientType=0);
+     }
+     .dropdown-menu {
+       li {
+         a {
+           background-color: #ffffff;
+           color: #555;
+         }
+         a:hover {
+           background-image: none;
+           color: #9B2217;
+         }
+       }
+     }
+   }
+ }
+
+}

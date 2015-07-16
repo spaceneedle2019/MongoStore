@@ -1,0 +1,38 @@
+<h2>Kunden</h2>
+
+<div style="margin-bottom: 10px;width: 100%; text-align: right;">
+  <%= link_to('Neuer Kunde', new_customer_path, :class => 'btn btn-default') %>
+</div>
+
+<% if @customers.present? %>
+    <table class="table table-bordered table-striped" style="font-size: 13px;">
+      <thead>
+      <tr style="text-align: left">
+        <th>Vor- und Nachname</th>
+        <th>Alter</th>
+        <th>E-Mail</th>
+        <th style="text-align:center; width: 240px;">Optionen</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @customers.each do |customer| %>
+          <tr style="text-align: left">
+            <td><%= customer.full_name %></td>
+            <td><%= customer.age.nil? ? 'keine Angabe' : customer.age %></td>
+            <td>
+              <div style="float:left"><%= customer.email %></div>
+              <div style="float:right"><%= link_to('Adressen', customer_addresses_path(customer))%> | <%= link_to('Zahlungsinformationen', edit_customer_payment_path(customer))%></div>
+            </td>
+            <td style="text-align: center;">
+              <%= link_to '<i class= "glyphicon glyphicon-pencil"></i> Bearbeiten'.html_safe, edit_customer_path(customer), :class => 'btn btn-default' %>
+              <%= link_to '<i class="glyphicon glyphicon-warning-sign"></i> Löschen'.html_safe, customer_path(customer), :action => :destroy, :method => :delete, :class => 'btn btn-danger' %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <div class="alert alert-warning" role="alert">
+      Es konnten kein Kunden gefunden werden.
+    </div>
+<% end %>

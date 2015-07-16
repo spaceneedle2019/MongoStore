@@ -1,0 +1,42 @@
+<h2>Kunde bearbeiten</h2>
+
+<%= form_for @customer, :url => {:action => 'update'}, :method => 'patch', :html => {:style => 'padding:0px;margin:0px;'} do |f| %>
+    <% if @customer.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <h3><%= @customer.errors.count %> Fehler aufgetreten!</h3>
+          <ul>
+            <% @customer.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :firstname %>
+      <%= f.text_field :firstname, :style => 'width: 160px;', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :lastname %>
+      <%= f.text_field :lastname, :style => 'width: 160px;', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :age %>
+      <%= f.text_field :age, :style => 'width: 80px;', :placeholder => 'optional', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :email %>
+      <%= f.text_field :email, :style => 'width: 250px;', :class => 'form-control' %>
+    </div>
+
+    <br style="clear:left"/>
+
+    <div style="padding-top:15px;width:100%;">
+      <%= link_to '<i class="glyphicon glyphicon-circle-arrow-left"></i> Zurück'.html_safe, customers_path, :class => 'btn btn-default' %>
+      <%= f.button '<i class="glyphicon glyphicon-ok"></i> Speichern'.html_safe, :class => 'btn btn-info' %>
+    </div>
+
+<% end %>

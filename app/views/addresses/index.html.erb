@@ -1,0 +1,42 @@
+<h2>Adressen von <%= @customer.full_name %></h2>
+
+<%= link_to 'Zurück zur Kundenübersicht', customers_path %>
+<div style="margin-bottom: 10px;margin-top: -20px;width: 100%; text-align: right;">
+  <%= link_to('Neue Adresse', new_customer_address_path, :class => 'btn btn-default') %>
+</div>
+
+<% if @addresses.present? %>
+    <table class="table table-bordered table-striped" style="font-size: 13px;">
+      <thead>
+      <tr style="text-align: left">
+        <th>Straße</th>
+        <th>Postleitzahl und Ort</th>
+        <th style="width: 50px;">Standard</th>
+        <th style="text-align:center; width: 240px;">Optionen</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @addresses.each do |address| %>
+          <tr style="text-align: left">
+            <td><%= address.street %></td>
+            <td><%= address.city_with_zip %></td>
+            <td style="text-align: center">
+              <% if address.primary %>
+                  <i class="glyphicon glyphicon-ok"></i>
+              <% else %>
+                  <i class="glyphicon glyphicon-remove"></i>
+              <% end %>
+            </td>
+            <td style="text-align: center;">
+              <%= link_to '<i class= "glyphicon glyphicon-pencil"></i> Bearbeiten'.html_safe, edit_customer_address_path(@customer, address), :class => 'btn btn-default' %>
+              <%= link_to '<i class="glyphicon glyphicon-warning-sign"></i> Löschen'.html_safe, customer_address_path(@customer, address), :action => :destroy, :method => :delete, :class => 'btn btn-danger' %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <div class="alert alert-warning" role="alert">
+      Es konnten keine Adressen gefunden werden.
+    </div>
+<% end %>

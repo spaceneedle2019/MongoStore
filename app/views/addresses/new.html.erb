@@ -1,0 +1,42 @@
+<h2>Neue Adresse</h2>
+
+<%= form_for @address, :url => {:action => 'create'}, :method => 'post', :html => {:style => 'padding:0px;margin:0px;'} do |f| %>
+    <% if @address.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <h3><%= @address.errors.count %> Fehler aufgetreten!</h3>
+          <ul>
+            <% @address.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :street %>
+      <%= f.text_field :street, :style => 'width: 160px;', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :zip %>
+      <%= f.text_field :zip, :style => 'width: 160px;', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :city %>
+      <%= f.text_field :city, :style => 'width: 160px;', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :primary %>
+      <%= f.check_box :primary, :style => "display: block; margin-top: 10px" %>
+    </div>
+
+    <br style="clear:left"/>
+
+    <div style="padding-top:15px;width:100%;">
+      <%= link_to '<i class="glyphicon glyphicon-circle-arrow-left"></i> Zurück'.html_safe, customer_addresses_path(@customer), :class => 'btn btn-default' %>
+      <%= f.button '<i class="glyphicon glyphicon-ok"></i> Adresse hinzufügen'.html_safe, :class => 'btn btn-info' %>
+    </div>
+
+<% end %>

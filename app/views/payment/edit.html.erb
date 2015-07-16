@@ -1,0 +1,71 @@
+<h2>Zahlungsinformationen von <%= @customer.full_name %></h2>
+
+<%= form_for @payment, :url => {:action => 'update'}, :method => 'patch', :html => {:style => 'padding:0px;margin:0px;'} do |f| %>
+    <% if @payment.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <h3><%= @payment.errors.count %> Fehler aufgetreten!</h3>
+          <ul>
+            <% @payment.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :card_holder %>
+      <%= f.text_field :card_holder, :style => 'width: 160px;', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :method %>
+      <%= f.select :method, options_for_select({ 'Bankkonto' => 1, 'Kreditkarte' => 2}, (params[:payment].present? ? params[:payment][:method] : @payment.method)), {}, :class => 'form-control', :style => 'width: 200px;' %>
+    </div>
+
+    <br style="clear:left"/>
+
+    <div id="debit" style="margin-top: 20px;">
+      <div style="float:left;padding: 0px 10px 0px 0px;">
+        <%= f.label :iban %>
+        <%= f.text_field :iban, :style => 'width: 220px;', :class => 'form-control' %>
+      </div>
+
+      <div style="float:left;padding: 0px 10px 0px 0px;">
+        <%= f.label :bic %>
+        <%= f.text_field :bic, :style => 'width: 178px;', :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div id="credit" style="margin-top: 20px;">
+      <div style="float:left;padding: 0px 10px 0px 0px;">
+        <%= f.label :number %>
+        <%= f.text_field :number, :style => 'width: 160px;', :class => 'form-control' %>
+      </div>
+
+      <div style="float:left;padding: 0px 10px 0px 0px;">
+        <%= f.label :cvc %>
+        <%= f.text_field :cvc, :style => 'width: 50px;', :class => 'form-control' %>
+      </div>
+
+      <div style="float:left;padding: 0px 10px 0px 0px;">
+        <%= f.label :expiration_date %>
+        <% month = @payment.expiration_date.present? ? @payment.expiration_date.month : Date.current %>
+        <%= select_month month, {:field_name => 'month'}, {:class => 'form-control'} %>
+      </div>
+
+      <div style="float:left;padding-right:10px;margin-top: 25px;">
+        <% year = @payment.expiration_date.present? ? @payment.expiration_date.year : Date.current.year %>
+        <%= select_year year, {:field_name => 'year', :start_year => Date.current.year, :end_year => 2020}, {:class => 'form-control'} %>
+      </div>
+
+    </div>
+
+    <br style="clear:left"/>
+
+    <div style="padding-top:15px;width:100%;">
+      <%= link_to '<i class="glyphicon glyphicon-circle-arrow-left"></i> Zurück'.html_safe, customers_path, :class => 'btn btn-default' %>
+      <%= f.button '<i class="glyphicon glyphicon-ok"></i> Speichern'.html_safe, :class => 'btn btn-info' %>
+      <%= link_to '<i class="glyphicon glyphicon-warning-sign"></i> Löschen'.html_safe, customer_payment_path(@customer), :action => :destroy, :method => :delete, :style => 'margin-left: 122px;', :class => 'btn btn-danger' %>
+    </div>
+
+<% end %>

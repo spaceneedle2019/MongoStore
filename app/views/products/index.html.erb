@@ -1,0 +1,37 @@
+<h2>Produkte</h2>
+
+<div style="margin-bottom: 10px;width: 100%; text-align: right;">
+  <%= link_to('Neues Produkt', new_product_path, :class => 'btn btn-default') %>
+</div>
+
+<% if @products.present? %>
+    <table class="table table-bordered table-striped" style="font-size: 13px;">
+      <thead>
+      <tr style="text-align: left">
+        <th>Artikel-Nr.</th>
+        <th>Name</th>
+        <th>Beschreibung</th>
+        <th>Preis</th>
+        <th style="text-align:center; width: 240px;">Optionen</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @products.each do |product| %>
+          <tr style="text-align: left">
+            <td><%= ('%05d' % product.number) %></td>
+            <td><%= product.name %></td>
+            <td><%= product.description.nil? ? '<span style="color:#666"><i>Keine Beschreibung vorhanden.</i></span>'.html_safe : product.description %></td>
+            <td><%= number_to_currency(product.price, locale: :de) %></td>
+            <td style="text-align: center;">
+              <%= link_to '<i class= "glyphicon glyphicon-pencil"></i> Bearbeiten'.html_safe, edit_product_path(product), :class => 'btn btn-default' %>
+              <%= link_to '<i class="glyphicon glyphicon-warning-sign"></i> Löschen'.html_safe, product_path(product), :action => :destroy, :method => :delete, :class => 'btn btn-danger' %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <div class="alert alert-warning" role="alert">
+      Es konnten keine Produkte gefunden werden.
+    </div>
+<% end %>

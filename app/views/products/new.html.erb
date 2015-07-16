@@ -1,0 +1,37 @@
+<h2>Neues Produkt</h2>
+
+<%= form_for @product, :url => {:action => 'create'}, :method => 'post', :html => {:style => 'padding:0px;margin:0px;'} do |f| %>
+    <% if @product.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <h3><%= @product.errors.count %> Fehler aufgetreten!</h3>
+          <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :name %>
+      <%= f.text_field :name, :style => 'width: 250px;', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :price %>
+      <%= f.text_field :price, :style => 'width: 130px;', :class => 'form-control' %>
+    </div>
+
+    <div style="float:left;padding: 0px 10px 0px 0px;">
+      <%= f.label :description %>
+      <%= f.text_area :description, :placeholder => 'optional', :style => 'width: 300px; height:100px', :class => 'form-control' %>
+    </div>
+
+    <br style="clear:left"/>
+
+    <div style="padding-top:15px;width:100%;">
+      <%= link_to '<i class="glyphicon glyphicon-circle-arrow-left"></i> Zurück'.html_safe, products_path, :class => 'btn btn-default' %>
+      <%= f.button '<i class="glyphicon glyphicon-ok"></i> Produkt hinzufügen'.html_safe, :class => 'btn btn-info' %>
+    </div>
+
+<% end %>
