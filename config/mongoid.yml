@@ -73,4 +73,3 @@ production:
     default:
       uri: <%= ENV['MONGOLAB_URI'] %>
       options:
-        consistency: :strong
